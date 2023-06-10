@@ -1,12 +1,22 @@
-import { FC, InputHTMLAttributes } from "react";
-import cn from "classnames";
+import { FC, InputHTMLAttributes, forwardRef } from "react";
 
 import { Input } from "./styles";
 
-type Props = InputHTMLAttributes<HTMLInputElement>;
+export type Props = InputHTMLAttributes<HTMLInputElement>;
 
-const index: FC<Props> = ({ placeholder, name, ...props }) => {
-  return <Input type="text" placeholder={placeholder} name={name} {...props} />;
-};
+const InputComponent = forwardRef<HTMLInputElement, Props>(
+  ({ placeholder, name, ...props }, ref) => {
+    return (
+      <Input
+        ref={ref}
+        type="text"
+        placeholder={placeholder}
+        name={name}
+        {...props}
+      />
+    );
+  }
+);
 
-export default index;
+InputComponent.displayName = "InputComponent";
+export default InputComponent;

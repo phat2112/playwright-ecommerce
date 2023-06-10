@@ -1,5 +1,11 @@
-import Input from "../../components/input";
-import Button from "../../components/button";
+import { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+import { login } from "../../services/login";
+import FormInput from "@component/Input/FormInput";
+import Button from "@component/Button";
 import {
   Container,
   Wrapper,
@@ -8,25 +14,71 @@ import {
   Title,
 } from "./styles";
 
-const index = () => {
+interface FormLogin {
+  username: string;
+  password: string;
+}
+
+const defaultValues: FormLogin = {
+  username: "",
+  password: "",
+};
+
+const schema = yup.object<FormLogin>({
+  username: yup
+    .string()
+    .required("field is required")
+    .email("username is invalid"),
+  password: yup.string().required("field is required"),
+});
+
+const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const methods = useForm<FormLogin>({
+    defaultValues,
+    resolver: yupResolver(schema),
+  });
+
+  const onLogin = async (formValues: FormLogin) => {
+    console.log({ formValues });
+    setIsLoading(true);
+
+    try {
+      const response = await login(formValues);
+
+      console.log({ response });
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
-    <Container>
-      <Wrapper size={450}>
-        <Title>Login</Title>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onLogin)}>
+        <Container>
+          <Wrapper size={450}>
+            <Title>Login</Title>
 
-        <InputWrapper>
-          <Input placeholder="Username" />
-        </InputWrapper>
-        <InputWrapper>
-          <Input placeholder="Password" />
-        </InputWrapper>
+            <InputWrapper>
+              <FormInput name="username" placeholder="Username" />
+            </InputWrapper>
+            <InputWrapper>
+              <FormInput
+                name="password"
+                placeholder="Password"
+                type="password"
+              />
+            </InputWrapper>
 
-        <ButtonWrapper>
-          <Button type="submit">Submit</Button>
-        </ButtonWrapper>
-      </Wrapper>
-    </Container>
+            <ButtonWrapper>
+              <Button type="submit">Submit</Button>
+            </ButtonWrapper>
+          </Wrapper>
+        </Container>
+      </form>
+    </FormProvider>
   );
 };
 
-export default index;
+export default Login;
