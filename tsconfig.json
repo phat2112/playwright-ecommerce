@@ -19,12 +19,16 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
-      "@component/*": ["components/*"],
+      "@components/*": ["components/*"],
       "@screen/*": ["screen/*"],
       "@mock/*": ["mocks/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"],
+      "@layouts/*": ["layouts/*"],
+      "@models": ["models"],
+      "@guards/*": ["guards/*"]
     }
   },
   "include": ["src"],

@@ -12,11 +12,14 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@component": path.resolve(currentDirUrl, "src/components"),
+      "@components": path.resolve(currentDirUrl, "src/components"),
       "@screen": path.resolve(currentDirUrl, "src/screen"),
       "@mock": path.resolve(currentDirUrl, "src/mocks"),
-      "@service": path.resolve(currentDirUrl, "src/services"),
+      "@services": path.resolve(currentDirUrl, "src/services"),
       "@utils": path.resolve(currentDirUrl, "src/utils"),
+      "@layouts": path.resolve(currentDirUrl, "src/layout"),
+      "@models": path.resolve(currentDirUrl, "src/models"),
+      "@guards": path.resolve(currentDirUrl, "src/guards"),
     },
   },
 });

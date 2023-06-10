@@ -1,16 +1,16 @@
 {
-  "user": [
-    {
-      "username": "user-test@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "token": "mockUserToken"
-    },
-    {
-      "username": "admin@gmail.com",
-      "password": "admin",
-      "role": "admin",
-      "token": "mockAdminToken"
-    }
-  ]
+	"user": [
+		{
+			"username": "user-test@gmail.com",
+			"password": "123456",
+			"role": "user",
+			"token": "mockUserToken"
+		},
+		{
+			"username": "admin@gmail.com",
+			"password": "admin",
+			"role": "admin",
+			"token": "mockAdminToken"
+		}
+	]
 }

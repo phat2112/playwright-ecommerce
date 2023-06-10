@@ -3,9 +3,9 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { login } from "../../services/login";
-import FormInput from "@component/Input/FormInput";
-import Button from "@component/Button";
+import { login } from "@services/Login";
+import FormInput from "@components/Input/FormInput";
+import Button from "@components/Button";
 import {
   Container,
   Wrapper,
