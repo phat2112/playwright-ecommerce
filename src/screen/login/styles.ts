@@ -61,6 +61,7 @@ export const InputWrapper = styled.div`
   width: 270px;
 `;
 
-export const ButtonWrapper = styled.div`
-  width: 200px;
+export const ButtonWrapper = styled.div<{ isLoading: boolean }>`
+  width: ${(props) => (props.isLoading ? 270 : 200)}px;
+  transition: width 0.2s cubic-bezier(0, 0.59, 0.27, 1.11);
 `;

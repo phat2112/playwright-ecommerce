@@ -26,4 +26,10 @@ export const Button = styled.button`
     top: 5px;
     left: 10%;
   }
+
+  .loading-spinner {
+    position: absolute;
+    right: 6px;
+    top: 10px;
+  }
 `;
