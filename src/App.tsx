@@ -6,14 +6,15 @@ import Admin from "@screen/Admin";
 import Dashboard from "@screen/Dashboard";
 import ProtectRoutes from "@guards/ProtectRoutes";
 import { UserInfo } from "@models";
+import ToastProvider from "@components/Toast";
 
 const App = () => {
-  const [userInfo] = useState<UserInfo | null>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   const router = createBrowserRouter([
     {
       path: "/login",
-      element: <Login />,
+      element: <Login getUserInfo={setUserInfo} />,
     },
     {
       path: "/",
@@ -38,7 +39,12 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastProvider />
+    </>
+  );
 };
 
 export default App;
