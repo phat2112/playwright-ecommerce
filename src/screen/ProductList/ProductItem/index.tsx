@@ -1,5 +1,5 @@
 import {Product} from '@models';
-import {Wrapper, Image, Content} from '@screen/ProductList/ProductItem/styles';
+import {Wrapper, Image, Content} from './styles';
 
 interface Props {
 	data: Product;

@@ -2,13 +2,15 @@ import {PropsWithChildren} from 'react';
 import {Navigate} from 'react-router-dom';
 // project import
 import {UserInfo} from '@models';
+import {useAuthContext} from '@hooks';
 import RoleRoutes from '@guards/RoleRoutes';
 
 interface Props extends PropsWithChildren {
-	userInfo: UserInfo | null;
 	defineRoles?: UserInfo['role'][];
 }
-const ProtectRoutes = ({userInfo, defineRoles = [], children}: Props) => {
+const ProtectRoutes = ({defineRoles = [], children}: Props) => {
+	const {userInfo} = useAuthContext();
+
 	if (!userInfo) {
 		return <Navigate to="/login" replace />;
 	}

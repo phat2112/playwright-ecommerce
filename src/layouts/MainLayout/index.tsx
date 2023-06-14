@@ -1,7 +1,7 @@
 import {Outlet} from 'react-router-dom';
 // project import
 import Header from '@components/Header';
-import {MainLayoutChild, MainLayoutWrapper} from '@layouts/MainLayout/styles';
+import {MainLayoutChild, MainLayoutWrapper} from './styles';
 
 const MainLayout = () => {
 	return (

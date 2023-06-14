@@ -21,6 +21,8 @@ export default defineConfig({
 			'@layouts': path.resolve(currentDirUrl, 'src/layouts'),
 			'@models': path.resolve(currentDirUrl, 'src/models'),
 			'@guards': path.resolve(currentDirUrl, 'src/guards'),
+			'@contexts': path.resolve(currentDirUrl, 'src/contexts'),
+			'@hooks': path.resolve(currentDirUrl, 'src/hooks'),
 		},
 	},
 });

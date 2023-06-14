@@ -1,12 +1,12 @@
-import {Product} from '@models';
-import ProductsMock from '@mock/product.json';
 import ProductItem from '@screen/ProductList/ProductItem';
-import {Wrapper} from '@screen/ProductList/styles';
+import { useProductContext } from '@hooks';
+import {Wrapper} from './styles';
 
 const ProductList = () => {
+	const {productList} = useProductContext();
 	return (
 		<Wrapper>
-			{(ProductsMock as Product[]).map((product) => {
+			{productList.map((product) => {
 				return <ProductItem key={product.id} data={product} />;
 			})}
 		</Wrapper>

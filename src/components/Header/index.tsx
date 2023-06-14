@@ -1,18 +1,23 @@
+import {NavLink} from 'react-router-dom';
 // project import
-import {Container, CustomLink} from '@components/Header/styles';
+import {useAuthContext} from '@hooks';
+import {Container, CustomHeaderItem} from './styles';
 
 const Header = () => {
+	const {userInfo, setUserInfo} = useAuthContext();
+	const isAdmin = userInfo?.role === 'admin';
+
+	const onLogout = () => {
+		setUserInfo(null);
+	};
+
 	return (
 		<Container>
-			<CustomLink to="/" className={({isActive}) => (isActive ? 'active' : '')}>
-				Home
-			</CustomLink>
-			<CustomLink
-				to="/admin"
-				className={({isActive}) => (isActive ? 'active' : '')}
-			>
-				Admin
-			</CustomLink>
+			<NavLink to="/">Home</NavLink>
+			{isAdmin && <NavLink to="/admin">Admin</NavLink>}
+			{userInfo && (
+				<CustomHeaderItem onClick={onLogout}>Logout</CustomHeaderItem>
+			)}
 		</Container>
 	);
 };
