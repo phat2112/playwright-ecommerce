@@ -5,10 +5,10 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {useNavigate} from 'react-router-dom';
 
+import {useAuthContext} from '@hooks';
 import {login} from '@services/Login';
 import FormInput from '@components/input/FormInput';
 import Button from '@components/button';
-import {UserInfo} from '@models';
 import {
 	Container,
 	Wrapper,
@@ -35,11 +35,8 @@ const schema = yup.object<FormLogin>({
 	password: yup.string().required('field is required'),
 });
 
-type Props = {
-	getUserInfo: Dispatch<SetStateAction<UserInfo | null>>;
-};
-
-const Login: React.FC<Props> = ({getUserInfo}) => {
+const Login = () => {
+	const {setUserInfo} = useAuthContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const methods = useForm<FormLogin>({
@@ -56,7 +53,7 @@ const Login: React.FC<Props> = ({getUserInfo}) => {
 				throw new Error(response?.data?.message || 'Internal Server Error');
 			}
 
-			getUserInfo(response.data);
+			setUserInfo(response.data);
 			toast.success('User signed in successfully');
 			navigate('/', {replace: true});
 		} catch (error) {
@@ -67,6 +64,7 @@ const Login: React.FC<Props> = ({getUserInfo}) => {
 			setIsLoading(false);
 		}
 	};
+
 	return (
 		<FormProvider {...methods}>
 			<form onSubmit={methods.handleSubmit(onLogin)}>
@@ -76,6 +74,7 @@ const Login: React.FC<Props> = ({getUserInfo}) => {
 
 						<InputWrapper>
 							<FormInput
+								variant="shadow"
 								name="username"
 								placeholder="Username"
 								data-testId="username"
@@ -83,6 +82,7 @@ const Login: React.FC<Props> = ({getUserInfo}) => {
 						</InputWrapper>
 						<InputWrapper>
 							<FormInput
+								variant="shadow"
 								name="password"
 								placeholder="Password"
 								type="password"

@@ -6,3 +6,7 @@
 	color: #00205c;
 	font-family: 'Roboto';
 }
+
+img {
+	max-width: 100%;
+}

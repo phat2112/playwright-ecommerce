@@ -4,3 +4,5 @@ export interface Product {
 	price: string;
 	image: string;
 }
+
+export type FormProduct = Omit<Product, 'id'>;

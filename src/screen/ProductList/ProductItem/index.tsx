@@ -12,7 +12,7 @@ const ProductItem = ({data}: Props) => {
 			</Image>
 			<Content>
 				<h1>{data.name}</h1>
-				<p>{data.price}</p>
+				<p>${data.price}</p>
 			</Content>
 		</Wrapper>
 	);

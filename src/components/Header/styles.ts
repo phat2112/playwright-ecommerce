@@ -13,7 +13,7 @@ export const Container = styled.div`
 		transition: 0.3s ease-in-out;
 		&:hover,
 		&.active {
-			color: #2e71ee;
+			color: #ff0f5b;
 		}
 	}
 `;
