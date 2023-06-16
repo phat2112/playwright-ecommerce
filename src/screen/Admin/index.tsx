@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {FormProvider, useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {toast} from 'react-toastify';
 // project import
 import {FormProduct, Product} from '@models';
 import {useProductContext} from '@hooks';
@@ -46,6 +47,7 @@ const Admin = () => {
 		};
 
 		setTimeout(() => {
+			toast.success('Create product successfully');
 			addProduct(newProduct);
 			setLoading(false);
 			navigate('/');
@@ -57,15 +59,28 @@ const Admin = () => {
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onCreateProduct)}>
 					<Container>
-						<FormInput name="name" placeholder="Name of product*" />
+						<FormInput
+							name="name"
+							placeholder="Name of product*"
+							data-testId="product-name"
+						/>
 						<FormInput
 							name="price"
 							placeholder="Price*"
 							type="number"
 							step="0.01"
+							data-testId="product-price"
 						/>
-						<FormRandomImage name="image" placeholder="Image url*" />
-						<Button type="submit" isLoading={loading}>
+						<FormRandomImage
+							name="image"
+							placeholder="Image url*"
+							data-testId="product-image-url"
+						/>
+						<Button
+							type="submit"
+							isLoading={loading}
+							data-testId="product-submit"
+						>
 							Create product
 						</Button>
 					</Container>

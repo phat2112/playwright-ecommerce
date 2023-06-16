@@ -26,7 +26,7 @@ const FormRandomImage = ({name, ...restProps}: Props) => {
 			<ErrorMessage
 				errors={errors}
 				name={name}
-				render={({message}) => <p>{message}</p>}
+				render={({message}) => <p className="error-message">{message}</p>}
 			/>
 			<RandomImage
 				value={field.value}

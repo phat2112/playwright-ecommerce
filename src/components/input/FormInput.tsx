@@ -20,7 +20,7 @@ const FormInput: FC<Props> = ({...inputProps}) => {
 			<ErrorMessage
 				errors={errors}
 				name={name}
-				render={({message}) => <p>{message}</p>}
+				render={({message}) => <p className="error-message">{message}</p>}
 			/>
 		</>
 	);

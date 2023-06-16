@@ -14,7 +14,11 @@ const Header = () => {
 	return (
 		<Container>
 			<NavLink to="/">Home</NavLink>
-			{isAdmin && <NavLink to="/admin">Admin</NavLink>}
+			{isAdmin && (
+				<NavLink to="/admin" data-testId="anchor-admin">
+					Admin
+				</NavLink>
+			)}
 			{userInfo && (
 				<CustomHeaderItem onClick={onLogout}>Logout</CustomHeaderItem>
 			)}

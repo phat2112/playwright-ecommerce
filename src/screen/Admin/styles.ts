@@ -6,7 +6,7 @@ export const Container = styled.div`
 	margin: 0 auto;
 	padding: 30px;
 	border-radius: 16px;
-	input ~ * {
+	input ~ *:not(.error-message) {
 		margin-top: 16px;
 	}
 `;
