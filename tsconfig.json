@@ -28,7 +28,9 @@
       "@services/*": ["services/*"],
       "@layouts/*": ["layouts/*"],
       "@models": ["models"],
-      "@guards/*": ["guards/*"]
+      "@guards/*": ["guards/*"],
+      "@contexts/*": ["contexts/*"],
+      "@hooks": ["hooks"]
     }
   },
   "include": ["src"],

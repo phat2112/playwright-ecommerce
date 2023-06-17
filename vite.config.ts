@@ -1,25 +1,28 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
+import {defineConfig} from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const currentFileUrl = import.meta.url;
-const currentDirUrl = new URL(".", currentFileUrl).pathname;
+const currentDirUrl = new URL('.', currentFileUrl).pathname;
 
-console.log({ currentFileUrl, currentDirUrl });
+console.log({currentFileUrl, currentDirUrl});
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@components": path.resolve(currentDirUrl, "src/components"),
-      "@screen": path.resolve(currentDirUrl, "src/screen"),
-      "@mock": path.resolve(currentDirUrl, "src/mocks"),
-      "@services": path.resolve(currentDirUrl, "src/services"),
-      "@utils": path.resolve(currentDirUrl, "src/utils"),
-      "@layouts": path.resolve(currentDirUrl, "src/layout"),
-      "@models": path.resolve(currentDirUrl, "src/models"),
-      "@guards": path.resolve(currentDirUrl, "src/guards"),
-    },
-  },
+	plugins: [react(), tsconfigPaths()],
+	resolve: {
+		alias: {
+			'@components': path.resolve(currentDirUrl, 'src/components'),
+			'@screen': path.resolve(currentDirUrl, 'src/screen'),
+			'@mock': path.resolve(currentDirUrl, 'src/mocks'),
+			'@services': path.resolve(currentDirUrl, 'src/services'),
+			'@utils': path.resolve(currentDirUrl, 'src/utils'),
+			'@layouts': path.resolve(currentDirUrl, 'src/layouts'),
+			'@models': path.resolve(currentDirUrl, 'src/models'),
+			'@guards': path.resolve(currentDirUrl, 'src/guards'),
+			'@contexts': path.resolve(currentDirUrl, 'src/contexts'),
+			'@hooks': path.resolve(currentDirUrl, 'src/hooks'),
+		},
+	},
 });

@@ -1,49 +1,56 @@
-import { useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 // project import
 import Login from "@screen/Login";
 import Admin from "@screen/Admin";
-import Dashboard from "@screen/Dashboard";
+import ProductList from "@screen/ProductList";
 import ProtectRoutes from "@guards/ProtectRoutes";
-import { UserInfo } from "@models";
 import ToastProvider from "@components/Toast";
+import MainLayout from "@layouts/MainLayout";
+import AuthProvider from "@contexts/AuthContext";
+import ProductProvider from "@contexts/ProductContext";
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-
   const router = createBrowserRouter([
     {
       path: "/login",
-      element: <Login getUserInfo={setUserInfo} />,
+      element: <Login />,
     },
     {
       path: "/",
-      element: (
-        <ProtectRoutes userInfo={userInfo}>
-          <Dashboard />
-        </ProtectRoutes>
-      ),
-      children: userInfo
-        ? [
-            // {index: true, element: <ProductList />},
-            {
-              path: "/admin",
-              element: (
-                <ProtectRoutes userInfo={userInfo} defineRoles={["admin"]}>
-                  <Admin />
-                </ProtectRoutes>
-              ),
-            },
-          ]
-        : [],
+      element: <MainLayout />,
+      children: [
+        {
+          index: true,
+          element: (
+            <ProtectRoutes>
+              <ProductList />
+            </ProtectRoutes>
+          ),
+        },
+        {
+          path: "/admin",
+          element: (
+            <ProtectRoutes defineRoles={["admin"]}>
+              <Admin />
+            </ProtectRoutes>
+          ),
+        },
+      ],
     },
+    { path: "*", element: <Navigate to="/" replace /> },
   ]);
 
   return (
-    <>
-      <RouterProvider router={router} />
-      <ToastProvider />
-    </>
+    <AuthProvider>
+      <ProductProvider>
+        <RouterProvider router={router} />
+        <ToastProvider />
+      </ProductProvider>
+    </AuthProvider>
   );
 };
 
