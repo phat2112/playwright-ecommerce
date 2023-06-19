@@ -9,10 +9,11 @@ const errorImageUrl =
 	'https://e7.pngegg.com/pngimages/530/168/png-clipart-adam-sandler-click-film-michael-newman-adam-sandler-hand-click.png';
 
 interface Props {
+	name?: string;
 	value: string;
 	onSetRandomImage: (imageUrl: string) => void;
 }
-const RandomImage = ({value: initValue, onSetRandomImage}: Props) => {
+const RandomImage = ({name, value: initValue, onSetRandomImage}: Props) => {
 	const [imageUrl, setImageUrl] = useState(initValue);
 
 	const handleRandomImage = () => {
@@ -38,6 +39,7 @@ const RandomImage = ({value: initValue, onSetRandomImage}: Props) => {
 				alt="Oops, Maybe the url was broken"
 				onClick={handleRandomImage}
 				onError={handleErrorImage}
+				data-testId={name || imageUrl}
 			/>
 		</ImageWrap>
 	);
